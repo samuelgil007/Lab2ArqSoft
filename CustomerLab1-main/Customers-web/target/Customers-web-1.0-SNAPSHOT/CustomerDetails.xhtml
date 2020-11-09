@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+
+  <h:form>
+            <p:panel header="GENERACION DE TRANSACCIONES">
+                <p:messages />
+
+                <h:panelGrid columns="4" cellpadding="5">
+                    <p:outputLabel for="@next" value="Nombre:" />
+                    <p:inputText value="#{ValidMBean.nom_cliente}" label="Name"/>
+                    <p:message for="@previous" />
+                    <h:outputText value="#{ValidMBean.nom_cliente}" />
+
+                    <p:outputLabel for="@next" value="Identificacion:" />
+                    <p:inputText value="#{ValidMBean.id_cliente}" label="Id_cliente"/>
+                    <p:message for="@previous" />
+                    <h:outputText value="#{ValidMBean.id_cliente}" />
+                    
+                    <p:outputLabel for="@next" value="Email:" />
+                    <p:inputText value="#{ValidMBean.email_cliente}" label="Email"/>
+                    <p:message for="@previous" />
+                    <h:outputText value="#{ValidMBean.email_cliente}" />
+                    
+                    <p:outputLabel for="@next" value="Numero Tarjeta: "  />
+                    <p:inputText id="counter" value="#{ValidMBean.num_tarjeta}">
+                        <p:ajax event="keyup" update="out" listener="#{ValidMBean.handleKeyEvent}" />
+                    </p:inputText>
+                    <h:graphicImage id="out" value="#{ValidMBean.imagen}"/>
+                     <p:message for="@previous" />
+                    
+                    
+                    
+                    
+                    
+                    <p:outputLabel for="@next" value="CSV:" />
+                    <p:inputText value="#{ValidMBean.csv_tarjeta}" label="CSV"/>
+                    <p:message for="@previous" />
+                    <h:outputText value="#{ValidMBean.csv_tarjeta}" />
+                    
+                    <p:outputLabel for="@next" value="Fecha Expiración (asi exactamente: MM/YYYY ):" />
+                    <p:inputText value="#{ValidMBean.expiracion_tarj}" label="expiracion"/>
+                    <p:message for="@previous" />
+                    <h:outputText value="#{ValidMBean.expiracion_tarj}" />
+                    
+                    <p:outputLabel for="@next" value="Valor Pago:" />
+                    <p:inputText value="#{ValidMBean.valor_pago}" label="Pago"/>
+                    <p:message for="@previous" />
+                    <h:outputText value="#{ValidMBean.valor_pago}" />
+
+                    <!--
+                    <p:messages showDetail="true"/>
+                    <p:captcha label="Captcha" />
+                    <br />
+                    -->
+                    
+
+                </h:panelGrid>
+
+                <p:commandButton class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" value="Enviar" ajax="false"  validateClient="true" action="#{ValidMBean.crearTransaccion()}"/>
+                </p:panel>
+        </h:form>
+        <h:form>
+             
+            <p:commandButton class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" value="Cancelar" ajax="false"  validateClient="false" action="#{ValidMBean.list()}"/>
+           
+        </h:form>
+    </h:body>
+</html>

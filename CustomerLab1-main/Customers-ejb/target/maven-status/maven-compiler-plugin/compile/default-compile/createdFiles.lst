@@ -1,0 +1,12 @@
+com\udea\session\DiscountCodeManagerLocal.class
+com\udea\session\ZipCodeManagerLocal.class
+com\udea\entity\Customer_.class
+com\udea\session\CustomerManager.class
+com\udea\session\CustomerManagerLocal.class
+com\udea\session\DiscountCodeManager.class
+com\udea\entity\DiscountCode_.class
+com\udea\entity\DiscountCode.class
+com\udea\entity\Customer.class
+com\udea\entity\MicroMarket_.class
+com\udea\session\ZipCodeManager.class
+com\udea\entity\MicroMarket.class

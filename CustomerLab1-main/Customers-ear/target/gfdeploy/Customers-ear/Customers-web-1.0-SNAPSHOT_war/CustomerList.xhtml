@@ -1,0 +1,202 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <style type="text/css">
+        .old{
+          background-color: #6CE26C !important;
+          background-image: none !important;
+          color: #000000 !important;
+        }        
+    </style>
+    
+    <style type="text/css">
+    .ui-datatable .ui-datatable-header {
+        text-align: right !important;
+    }
+     
+    .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-chkbox {
+        display: none;
+    }
+</style>
+    
+    <h:head>
+        <title>Facelet Title</title>
+     <script name="jquery/jquery.js" library="primefaces"></script>
+    </h:head>
+    <h:body>
+       
+        
+        <f:view>
+
+
+            <h:form>
+                
+                 <p:growl id="messages"/>
+ 
+    <p:menubar>
+        <p:submenu label="File" icon="pi pi-file">
+            <p:submenu label="New" icon="pi pi-briefcase">
+                <p:menuitem value="Project" url="#" />
+                <p:menuitem value="Other" url="#" />
+            </p:submenu>
+            <p:menuitem value="Open" url="#" />
+            <p:separator />
+            <p:menuitem value="Quit" url="#" />
+        </p:submenu>
+ 
+        <p:submenu label="Edit" icon="pi pi-pencil">
+            <p:menuitem value="Undo" url="#" icon="pi pi-angle-double-left" />
+            <p:menuitem value="Redo" url="#" icon="pi pi-angle-double-right" />
+        </p:submenu>
+ 
+        <p:submenu label="Help" icon="pi pi-question">
+            <p:menuitem value="Contents" url="#" />
+            <p:submenu label="Search" icon="pi pi-search">
+                <p:submenu label="Text">
+                    <p:menuitem value="Workspace" url="#" />
+                </p:submenu>
+                <p:menuitem value="File" url="#" />
+            </p:submenu>
+        </p:submenu>
+ 
+        <p:submenu label="Actions" icon="pi pi-cog">
+            <p:submenu label="Ajax" icon="pi pi-refresh">
+                <p:menuitem value="Save" action="#{menuView.save}" icon="pi pi-save" update="messages"/>
+                <p:menuitem value="Update" action="#{menuView.update}" icon="pi pi-refresh" update="messages"/>
+            </p:submenu>
+            <p:submenu label="Non-Ajax" icon="pi pi-clone">
+                <p:menuitem value="Delete" action="#{menuView.delete}" icon="pi pi-times" update="messages" ajax="false"/>
+            </p:submenu>
+        </p:submenu>
+ 
+        <p:menuitem value="Quit" url="http://www.primefaces.org" icon="pi pi-times" />
+ 
+        <f:facet name="options">
+            <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Search"/>
+            <p:commandButton type="button" value="Logout" icon="pi pi-home" />
+        </f:facet>
+    </p:menubar>
+                
+                
+                
+                <h1><h:outputText value="Listado de Clientes"/></h1>
+                
+                
+                
+                
+                
+                
+                
+                
+                <p:dataTable value="#{customerMBean.customers}"   style="margin-bottom:20px"
+                             var="item"
+                             paginator="true"
+                             rows="10"
+                             scrollable="true"
+                             scrollWidth="150%"
+                             scrollHeight="950"
+                             rendered="true"
+                             resizableColumns="true"
+                             sortMode="multiple"
+                             emptyMessage="No hay datos"
+                             widgetVar="customerTable"
+                             rowStyleClass="#{item.creditLimit le 60000 ? 'old':null}" >
+                    <p:column headerText="CustomerId"
+                              sortBy="#{item.customerId}"
+                              filterBy="#{item.customerId}"
+                              filterMatchMode="contains"   >
+                        <h:commandLink action="#{customerMBean.showDetails(item)}"
+                                       value="#{item.customerId}"/>
+                    </p:column>
+                    
+                     <p:column headerText="Qr Code" >    
+                   <p:barcode value="#{item.customerId}  #{item.creditLimit}  #{item.email}" 
+                              type="qr" height="150px" width="150px" /> 
+                      </p:column>
+                    
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Name"/>
+                        </f:facet>
+                        <h:outputText value="#{item.name}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Addressline1"/>
+                        </f:facet>
+                        <h:outputText value="#{item.addressline1}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Addressline2"/>
+                        </f:facet>
+                        <h:outputText value="#{item.addressline2}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="City"/>
+                        </f:facet>
+                        <h:outputText value="#{item.city}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="State"/>
+                        </f:facet>
+                        <h:outputText value="#{item.state}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Phone"/>
+                        </f:facet>
+                        <h:outputText value="#{item.phone}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Fax"/>
+                        </f:facet>
+                        <h:outputText value="#{item.fax}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Email"/>
+                        </f:facet>
+                        <h:outputText value="#{item.email}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="CreditLimit"/>
+                        </f:facet>
+                        <h:outputText value="#{item.creditLimit}">
+                        
+                         <f:convertNumber type="currency" currencySymbol="$" />
+                        </h:outputText>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="DiscountCode"/>
+                        </f:facet>
+                        <h:outputText 
+                            value="#{item.discountCode.discountCode} : #{item.discountCode.rate}%" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Zip"/>
+                        </f:facet>
+                        <h:outputText value="#{item.zip}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Discount"/>
+                        </f:facet>
+                        <h:outputText value="#{item.discount}"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </f:view>
+
+    </h:body>
+</html>
+
