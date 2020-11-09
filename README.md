@@ -2,6 +2,7 @@
 
 
 Este es el script que se debe usar en la base de datos:
+
 CREATE TABLE transaccion(
 id_transaccion int PRIMARY KEY NOT NULL AUTO_INCREMENT,
 id_usuario VARCHAR(20) NOT NULL,
