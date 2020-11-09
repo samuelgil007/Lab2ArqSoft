@@ -14,4 +14,5 @@ valor_pago DOUBLE NOT NULL,
 fecha_pago VARCHAR(20) NOT NULL,
 ref_pago VARCHAR(200) NOT NULL
 );
+
 Se debe hacer la conexion a la base de datos donde haya creado la tabla.
